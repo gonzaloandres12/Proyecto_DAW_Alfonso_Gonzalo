@@ -362,10 +362,11 @@ li{
 
 @media (min-width: 768px) {
     .filter .grid {
-      grid-template-columns: 480px 200px;
-      justify-content: space-between;
+        grid-template-columns: 480px 200px;
+        justify-content: space-between;
+        /* margin-left: 10px; */
+        padding: 0 1rem;
     }
-  
     .filter .category {
       display: flex;
       justify-content: flex-start; /* Cambio */
@@ -524,3 +525,9 @@ select {
     border-color: #007bff;
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
   }
+
+
+
+  i.bx.bx-log-out {
+    color: #dc3545;
+}

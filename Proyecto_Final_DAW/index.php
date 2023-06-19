@@ -34,8 +34,20 @@ include "app/helpers/generarCarrito.php";
       </div>
       <ul class="nav__list">
         <span class="login__icon">
-          <a href="app/views/inicioSesion.php"><i class='bx bx-user'></i></a>
-
+          <?php
+          // Verificar si el usuario ha iniciado sesión
+          if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+              // El usuario ha iniciado sesión, mostrar icono de cierre de sesión y texto correspondiente
+              echo '<span class="login__icon">
+                      <a href="app/helpers/cerrarSesion.php"><i class="bx bx-log-out"></i></a>
+                    </span>';
+          } else {
+              // El usuario no ha iniciado sesión, mostrar icono de inicio de sesión
+              echo '<span class="login__icon">
+                      <a href="inicioSesion.php"><i class="bx bx-user"></i></a>
+                    </span>';
+          }
+          ?>
         </span>
         <div class="carrito__icon">
           <a href="carrito.php"><i class="bx bx-cart"></i></a>
