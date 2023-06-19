@@ -1,7 +1,7 @@
 <?php
-include_once "Productos.php";
-include_once "Login.php";
-include_once "app/config/configDB.php";
+include "Productos.php";
+include "Login.php";
+include "app/config/configDB.php";
 
 
 /*
@@ -12,8 +12,9 @@ class AccesoDatos {
     
     private static $modelo = null;
     private $dbh = null;
-    private $stmt_productos    = null;
+    private $consulta    = null;
     private $consultaPorId = null;
+    private $consultaPorCategory = null;
     
     public static function getModelo(){
         if (self::$modelo == null){
@@ -37,9 +38,11 @@ class AccesoDatos {
             exit();
         }
        //Muestra todos los productos
-        $this->consulta = $this->dbh->prepare("SELECT * FROM productos");
+      //º  $this->consulta = $this->dbh->prepare("SELECT * FROM productos");
         //Ver detalles
         $this->consultaPorId = $this->dbh->prepare("SELECT * FROM productos where id = :id LIMIT 1");
+        $this->consultaPorCategory = $this->dbh->prepare("SELECT * FROM productos where category = :category");
+
 
     
     }
@@ -55,17 +58,38 @@ class AccesoDatos {
 
 
     // Devuelvo un usuario o null
-    public function getProductos ():array {
+    public function getProductos($categoria): array {
+        // Parámetro de categoría
+        $condiciones = array();
+    
+        if (!empty($categoria)) {
+            $condiciones[] = "category = :categoria";
+        }
+    
+        // Construir la consulta SQL
+        $query = "SELECT * FROM productos";
+    
+        if (!empty($condiciones)) {
+            $query .= " WHERE " . implode(" AND ", $condiciones);
+        }
+    
+        $this->consulta = $this->dbh->prepare($query);
+    
+        // Vincular parámetros si es necesario
+        if (!empty($categoria)) {
+            $this->consulta->bindParam(':categoria', $categoria);
+        }
+    
+        // Resto del código sin cambios
         $tablaP = [];
         $this->consulta->setFetchMode(PDO::FETCH_CLASS, 'Productos');
-        if($this->consulta->execute())
-        {
+        if ($this->consulta->execute()) {
             $tablaP = $this->consulta->fetchAll();
         }
-
+    
         return $tablaP;
-
     }
+    
 
     public function getProductoPorId (int $id) {
        
@@ -78,6 +102,21 @@ class AccesoDatos {
        }
        return $prod;
     }
+
+    public function getProductoPorCategory(string $category) {
+        $tablaP = [];
+        $this->consultaPorCategory->setFetchMode(PDO::FETCH_CLASS, 'Productos');
+        $this->consultaPorCategory->bindParam(':category', $category);
+
+        if ( $this->consultaPorCategory->execute())
+        {
+            $tablaP = $this->consultaPorCategory->fetchAll();
+        }
+
+
+       return $tablaP;
+    }
+
 
 
 

@@ -1,6 +1,11 @@
 <?php
-include "app/models/AccesoDatos.php";
+include "app/helpers/generaCuadros.php";
+include "app/helpers/generarCarrito.php";
 
+function cantidad(){
+
+    return cantProductos(obtenerProductosDelCarrito());
+}
 
 function detalleProducto($id) {
     $db = AccesoDatos::getModelo();

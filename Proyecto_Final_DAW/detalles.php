@@ -1,5 +1,6 @@
 <?php
 include "app/helpers/generaDetalles.php";
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +13,7 @@ include "app/helpers/generaDetalles.php";
   <!--Google fonts-->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="shortcut icon" href="app/img/favicon-32x32.png" type="image/x-icon">
 
   <!--Box icons-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
@@ -34,7 +36,6 @@ include "app/helpers/generaDetalles.php";
         </span>
         <div class="carrito__icon">
           <i class="bx bx-cart"></i>
-          <span class="item__total">0</span>
         </div>
       </ul>
     </div>
@@ -63,7 +64,7 @@ include "app/helpers/generaDetalles.php";
   </section>
 
   <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
-  <script src="./js/scripts.js"></script>
+  <script src="web/js/funciones.js"></script>
 </body>
 
 </html>
