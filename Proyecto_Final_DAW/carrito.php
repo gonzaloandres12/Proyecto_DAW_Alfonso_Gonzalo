@@ -22,6 +22,7 @@ if (isset($_GET['remove_item'])) {
 
 if (isset($_GET['clear_cart'])) {
     unset($_SESSION['carrito']);
+    
     header("Location: carrito.php");
     exit();
 }

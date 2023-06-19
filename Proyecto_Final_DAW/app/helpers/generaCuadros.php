@@ -1,7 +1,6 @@
 <?php
-
 session_start();
-
+include_once 'app/models/AccesoDatos.php';
 
 function guardarProductoEnCarrito($producto){
     if (!isset($_SESSION['carrito'])) {
@@ -23,15 +22,13 @@ function obtenerProductosDelCarrito(){
     return $productos;
 }
 
-
-
-function generarElementos()
+function generarElementos($categoria)
 {
-    include_once 'app/models/AccesoDatos.php';
-    $categoria = isset($_POST['category']) ? $_POST['category'] : "";
+    //$categoria = isset($_POST['category']) ? $_POST['category'] : "";
+    $db = AccesoDatos::getModelo();
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
         $productoID = $_POST['add_to_cart'];
-        $db = AccesoDatos::getModelo();
         $producto = $db->getProductoPorID($productoID);
 
         if ($producto) {
@@ -39,13 +36,10 @@ function generarElementos()
         }
     }
 
-    var_dump($categoria);
-    $db = AccesoDatos::getModelo();
     $productos = $db->getProductos($categoria);
     $result = "";
 
     foreach ($productos as $producto) {
-
         $result .= '
             <div class="producto">
                 <div class="image__container">
@@ -66,13 +60,13 @@ function generarElementos()
                     </div>
                 </div>
             </div>
-            
         ';
-        
     }
-    
-        // Recargar la página después de generar los elementos
-    echo $result;
+
+    // Imprimir el resultado para ser utilizado en la respuesta AJAX
+    return  $result;
 }
+
+// Llamar a la función generarElementos()
 
 ?>

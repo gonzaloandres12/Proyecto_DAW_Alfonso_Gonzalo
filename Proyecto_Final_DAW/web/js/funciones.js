@@ -14,23 +14,32 @@ function clearCart() {
         window.location.href = "carrito.php?clear_cart=1";
     }
 }
-  
-document.getElementById("category").addEventListener("change", filtrarProductos);
+
+/**$(document).ready(function() {
+  // Evento que se dispara cuando se selecciona una categoría
+  $("#category").change(function() {
+    filtrarProductos();
+  });
+});
 
 function filtrarProductos() {
   var categoria = $("#category").val();
 
-  // Realizar la solicitud AJAX para obtener los nuevos elementos
   $.ajax({
     url: "app/helpers/generaCuadros.php",
     method: "POST",
     data: { category: categoria },
     success: function(response) {
-      // Actualizar la sección de productos con los nuevos elementos
+      // Manipular la respuesta del servidor
+      // Aquí puedes actualizar la lista de productos o realizar cualquier otra acción necesaria
+      console.log(response); // Ejemplo: Imprimir la respuesta en la consola
+
+      // Actualizar la sección de productos en el index.php
       $(".productos__center").html(response);
     },
     error: function(xhr, status, error) {
-      console.error(error);
+      // Manejar errores de la solicitud AJAX
+      console.error(error); // Ejemplo: Imprimir el error en la consola
     }
   });
-}
+}*/

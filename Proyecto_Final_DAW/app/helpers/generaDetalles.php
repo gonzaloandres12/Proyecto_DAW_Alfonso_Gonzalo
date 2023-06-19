@@ -1,11 +1,27 @@
 <?php
-include "app/helpers/generaCuadros.php";
 include "app/helpers/generarCarrito.php";
+include_once 'app/models/AccesoDatos.php';
 
-function cantidad(){
+function guardarProductoEnCarrito($producto){
+    if (!isset($_SESSION['carrito'])) {
+        $_SESSION['carrito'] = array();
+    }
 
-    return cantProductos(obtenerProductosDelCarrito());
+    $_SESSION['carrito'][] = serialize($producto);
 }
+
+function obtenerProductosDelCarrito(){
+    $productos = array();
+
+    if (isset($_SESSION['carrito'])) {
+        foreach ($_SESSION['carrito'] as $productoSerializado) {
+            $productos[] = unserialize($productoSerializado);
+        }
+    }
+
+    return $productos;
+}
+
 
 function detalleProducto($id) {
     $db = AccesoDatos::getModelo();
@@ -16,7 +32,7 @@ function detalleProducto($id) {
 
     $result .= '
         <article class="detalle-grid">
-            <img src=' . $producto->image . ' alt="' . $producto->title . '" class="img-fluid">
+            <img src="' . $producto->image . '" alt="' . $producto->title . '" class="img-fluid">
             <div class="detalles-content">
                 <h3>' . $producto->title . '</h3>
                 <div class="rating">
@@ -45,7 +61,7 @@ function detalleProducto($id) {
                 </p>
                 <div class="bottom">
                     <div class="btn__group">
-                        <button class="btn addToCart" data-id=' . $producto->id . '>Añadir carrito</button>
+                        <button class="btn addToCart" data-id="' . $producto->id . '">Añadir carrito</button>
                     </div>
                 </div>
             </div>

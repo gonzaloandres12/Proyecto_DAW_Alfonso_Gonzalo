@@ -35,7 +35,7 @@ session_start();
           <a href=".//resources/LoginPruabaForm.php"><i class='bx bx-user'></i></a>
         </span>
         <div class="carrito__icon">
-          <i class="bx bx-cart"></i>
+        <a href="carrito.php"><i class="bx bx-cart"></i></a>
         </div>
       </ul>
     </div>

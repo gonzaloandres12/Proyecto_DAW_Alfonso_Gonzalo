@@ -34,7 +34,7 @@ include "app/helpers/generarCarrito.php";
       </div>
       <ul class="nav__list">
         <span class="login__icon">
-          <a href=""><i class='bx bx-user'></i></a>
+          <a href="app/views/inicioSesion.php"><i class='bx bx-user'></i></a>
 
         </span>
         <div class="carrito__icon">
@@ -46,18 +46,21 @@ include "app/helpers/generarCarrito.php";
   <section class="filter">
   <div class="grid">
     <div class="category">
-    <select id="category" name="category">
-        <option value="">Marcas</option>
-        <option value="Nike">Nike</option>
-        <option value="Puma">Puma</option>
-        <option value="Adidas">Adidas</option>
-        <option value="Salomon">Salomon</option>
-        <option value="Fila">Fila</option>
-        <option value="Under Armour">Under Armour</option>
-        <option value="Vans">Vans</option>
-        <option value="Converse">Converse</option>
-        <option value="New Balance">New Balance</option>
-      </select>
+      <form id="categoryForm" method="POST" action="">
+        <select id="category" name="category">
+          <option value="">Marcas</option>
+          <option value="Nike">Nike</option>
+          <option value="Puma">Puma</option>
+          <option value="Adidas">Adidas</option>
+          <option value="Salomon">Salomon</option>
+          <option value="Fila">Fila</option>
+          <option value="Under Armour">Under Armour</option>
+          <option value="Vans">Vans</option>
+          <option value="Converse">Converse</option>
+          <option value="New Balance">New Balance</option>
+        </select>
+        <button type="submit" class="btn btn_filter">Filtrar</button>
+      </form>
     </div>
   </div>
 </section>
@@ -65,7 +68,11 @@ include "app/helpers/generarCarrito.php";
   <!--Productos-->
   <section class="productos">
     <div class="productos__center">
-    <?=generarElementos()?> 
+    <?php 
+        $categoria = isset($_POST['category']) ? $_POST['category'] : "";
+        echo generarElementos($categoria)
+      
+        ?>
     </div>
       <!--Generar los elementos -->
     </section>
