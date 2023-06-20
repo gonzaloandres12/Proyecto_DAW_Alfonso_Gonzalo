@@ -29,7 +29,7 @@ if (isset($_POST['register'])) {
 
     if ($result->num_rows > 0) {
        echo $mensajeError = "El usuario ya existe en la base de datos.";
-       header('Location: ../resources/registrarPrueba.php?error=' . urlencode($mensajeError));
+       header('Location: ../views/registro.php?error=' . urlencode($mensajeError));
        exit(); // Detener la ejecución del script
     }
 
@@ -45,7 +45,7 @@ if (isset($_POST['register'])) {
         echo "Usuario registrado exitosamente!";
     } else {
         $mensajeError = "Error al registrar al usuario: " . $conn->error;
-        header('Location: ../resources/registrarPrueba.php?error=' . urlencode($mensajeError));
+        header('Location: ../views/registro.php?error=' . urlencode($mensajeError));
         exit(); // Detener la ejecución del script
     }
 }
@@ -60,7 +60,7 @@ if (isset($_POST['login'])) {
     // Comprobar si el usuario y la contraseña están vacíos
     if (empty($username) || empty($password)) {
         $mensajeError= "El usuario y la contraseña son campos obligatorios.";
-        header('Location: ../registro.php?error='.$mensajeError);
+        header('Location: ../views/inicioSesion.php?error='.$mensajeError);
         exit(); // Detener la ejecución del script
     }
 
@@ -97,12 +97,12 @@ if (isset($_POST['login'])) {
             // Puedes redirigir al usuario a la página principal o realizar otras acciones necesarias
         } else {
             $mensajeError = "Contraseña incorrecta.";
-            header('Location: ../inicioSesion.php?error=' . urlencode($mensajeError));
+            header('Location: ../views/inicioSesion.php?error=' . urlencode($mensajeError));
             exit(); // Detener la ejecución del script
         }
     } else {
         $mensajeError = "Usuario no encontrado.";
-        header('Location: ../inicioSesion.php?error=' . urlencode($mensajeError));
+        header('Location: ../views/inicioSesion.php?error=' . urlencode($mensajeError));
         exit(); // Detener la ejecución del script
     }
 }
