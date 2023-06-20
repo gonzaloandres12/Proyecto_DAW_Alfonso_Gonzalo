@@ -9,7 +9,7 @@ include "app/helpers/generarCarrito.php";
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gonzalo - Tienda de zapatillas</title>
+  <title>Sneaker shop</title>
 
   <!--Google fonts-->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -30,7 +30,7 @@ include "app/helpers/generarCarrito.php";
   <nav class="nav">
     <div class="nav__center container">
       <div class="nav__logo">
-        <h1>ALFONSO <span>GONZALO</span></h1>
+      <h1>SNEAKER <span>SHOP</span></h1> 
       </div>
       <ul class="nav__list">
         <?php
@@ -118,7 +118,9 @@ include "app/helpers/generarCarrito.php";
       </div>
     </div>
   </section>
-
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">© 2023-2023 Sneaker shop</p>
+        </footer>
   <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
   <script src="web/js/funciones.js"></script>
 

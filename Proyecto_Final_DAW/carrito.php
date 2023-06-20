@@ -35,7 +35,7 @@ if (isset($_GET['clear_cart'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JSON DEV - Productos detalles</title>
+    <title>Carrito</title>
 
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -54,7 +54,7 @@ if (isset($_GET['clear_cart'])) {
         <div class="nav__center container">
             <a href="index.php">
                 <div class="nav__logo">
-                    <h1>ALFONSO <span>GONZALO</span></h1>
+                <h1>SNEAKER <span>SHOP</span></h1> 
                 </div>
             </a>
             <ul class="nav__list">
@@ -95,17 +95,24 @@ if (isset($_GET['clear_cart'])) {
 
     <div class="carrito show">
         <h1>Su Carrito</h1>
-
         <div class="carrito__center">
             <?= generarElementosCarrito(obtenerProductosDelCarrito()); ?>
         </div>
 
         <div class="carrito__footer">
-            <h3>Total: € <span class="carrito__total"><?=calcularTotalCarrito(obtenerProductosDelCarrito())?></span></h3>
-            <button class="comprar__carrito btn">Comprar</button>
-            <button class="clear__carrito btn" onclick="clearCart()">Remover carrito</button>
+            <?php $productos = obtenerProductosDelCarrito(); ?>
+            <?php if (!empty($productos)) { ?>
+                <h3>Total: € <span class="carrito__total"><?= calcularTotalCarrito($productos) ?></span></h3>
+                <button class="comprar__carrito btn" onclick="comprar()">Comprar</button>
+                <button class="clear__carrito btn" onclick="clearCart()">Remover carrito</button>
+            <?php } else { ?>
+                <p>No hay productos en el carrito.</p>
+            <?php } ?>
         </div>
     </div>
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">© 2023-2023 Sneaker shop</p>
+    </footer>
     <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
     <script src="web/js/funciones.js"></script>
 </body>

@@ -8,7 +8,7 @@ session_start();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JSON DEV - Productos detalles</title>
+  <title>Productos detalles</title>
 
   <!--Google fonts-->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -30,7 +30,7 @@ session_start();
     <div class="nav__center container">
       <a href="index.php">
         <div class="nav__logo">
-          <h1>ALFONSO <span>GONZALO</span></h1>
+        <h1>SNEAKER <span>SHOP</span></h1> 
         </div>
       </a>
       <ul class="nav__list">
@@ -89,6 +89,9 @@ session_start();
       </div>
     </div>
   </section>
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">© 2023-2023 Sneaker shop</p>
+        </footer>
 
   <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
 </body>
