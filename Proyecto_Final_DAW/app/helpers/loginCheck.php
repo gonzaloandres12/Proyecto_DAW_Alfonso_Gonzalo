@@ -37,10 +37,10 @@ if (isset($_POST['register'])) {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Insertar el nuevo usuario en la base de datos
-    $sql = "INSERT INTO login (user, password) VALUES ('$username', '$hashedPassword')";
+    $sql = "INSERT INTO login (user, password,rol) VALUES ('$username', '$hashedPassword','0')";
 
     if ($conn->query($sql) === TRUE) {
-        header("Location: ../index.html");
+        header("Location: ../../index.php");
         exit;
         echo "Usuario registrado exitosamente!";
     } else {
@@ -60,7 +60,7 @@ if (isset($_POST['login'])) {
     // Comprobar si el usuario y la contraseña están vacíos
     if (empty($username) || empty($password)) {
         $mensajeError= "El usuario y la contraseña son campos obligatorios.";
-        header('Location: ../../inicioSesion.php?error='.$mensajeError);
+        header('Location: ../registro.php?error='.$mensajeError);
         exit(); // Detener la ejecución del script
     }
 
@@ -80,6 +80,11 @@ if (isset($_POST['login'])) {
 
             // Establecer variable de sesión para indicar que el usuario ha iniciado sesión
             $_SESSION['loggedin'] = true;
+             // Obtener el rol del usuario desde la base de datos
+            $rol = $row['rol'];
+
+            // Establecer la variable de sesión para el rol del usuario
+            $_SESSION['rol'] = $rol;
 
             // Establecer la duración de la sesión en 10 minutos (600 segundos)
             $_SESSION['expire'] = time() + 600;
@@ -92,12 +97,12 @@ if (isset($_POST['login'])) {
             // Puedes redirigir al usuario a la página principal o realizar otras acciones necesarias
         } else {
             $mensajeError = "Contraseña incorrecta.";
-            header('Location: ../../inicioSesion.php?error=' . urlencode($mensajeError));
+            header('Location: ../inicioSesion.php?error=' . urlencode($mensajeError));
             exit(); // Detener la ejecución del script
         }
     } else {
         $mensajeError = "Usuario no encontrado.";
-        header('Location: ../../inicioSesion.php?error=' . urlencode($mensajeError));
+        header('Location: ../inicioSesion.php?error=' . urlencode($mensajeError));
         exit(); // Detener la ejecución del script
     }
 }

@@ -43,3 +43,6 @@ function filtrarProductos() {
     }
   });
 }*/
+function goBack() {
+  window.location.href = "../../index.php"; // Reemplaza "ruta_del_archivo" con la ruta al archivo deseado
+}

@@ -33,18 +33,29 @@ include "app/helpers/generarCarrito.php";
         <h1>ALFONSO <span>GONZALO</span></h1>
       </div>
       <ul class="nav__list">
+        <?php
+         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+          // Mostrar el botón adicional para los usuarios con rol de administrador
+          if (isset($_SESSION['rol']) && $_SESSION['rol'] === '1') {
+              echo '<span class="add__icon">
+              <a href="app/views/addProductos.php"><i class="bx bx-plus-circle"></i></a>
+            </span>';
+            }
+        ?>
         <span class="login__icon">
           <?php
           // Verificar si el usuario ha iniciado sesión
-          if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+         
+            
               // El usuario ha iniciado sesión, mostrar icono de cierre de sesión y texto correspondiente
               echo '<span class="login__icon">
                       <a href="app/helpers/cerrarSesion.php"><i class="bx bx-log-out"></i></a>
-                    </span>';
+                    </span>
+                    <p></p>';
           } else {
               // El usuario no ha iniciado sesión, mostrar icono de inicio de sesión
               echo '<span class="login__icon">
-                      <a href="inicioSesion.php"><i class="bx bx-user"></i></a>
+                      <a href="app/views/inicioSesion.php"><i class="bx bx-user"></i></a>
                     </span>';
           }
           ?>

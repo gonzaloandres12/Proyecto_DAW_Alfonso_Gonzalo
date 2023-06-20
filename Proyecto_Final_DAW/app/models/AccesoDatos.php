@@ -116,32 +116,7 @@ class AccesoDatos {
 
        return $tablaP;
     }
-    public function getUsuario($username) {
-        $query = "SELECT * FROM login WHERE user = :username LIMIT 1";
-        $consulta = $this->dbh->prepare($query);
-        $consulta->bindParam(':username', $username);
-        $consulta->setFetchMode(PDO::FETCH_CLASS, 'Login');
 
-        if ($consulta->execute()) {
-            $user = $consulta->fetch();
-            return $user;
-        }
-
-        return null;
-    }
-
-    public function insertarUsuario($username, $hashedPassword) {
-        $query = "INSERT INTO login (user, password) VALUES (:username, :hashedPassword)";
-        $consulta = $this->dbh->prepare($query);
-        $consulta->bindParam(':username', $username);
-        $consulta->bindParam(':hashedPassword', $hashedPassword);
-
-        if ($consulta->execute()) {
-            return true;
-        }
-
-        return false;
-    }
 
 
 

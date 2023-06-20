@@ -1,6 +1,6 @@
 <?php
 include "app/helpers/generarCarrito.php";
-include_once 'app/models/AccesoDatos.php';
+include 'app/models/AccesoDatos.php';
 
 function guardarProductoEnCarrito($producto){
     if (!isset($_SESSION['carrito'])) {
@@ -25,6 +25,14 @@ function obtenerProductosDelCarrito(){
 
 function detalleProducto($id) {
     $db = AccesoDatos::getModelo();
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
+        $productoID = $_POST['add_to_cart'];
+        $producto = $db->getProductoPorID($productoID);
+
+        if ($producto) {
+            guardarProductoEnCarrito($producto);
+        }
+    }
     $idCheck = isset($id) ? $id : null;
     $producto = $db->getProductoPorId($idCheck);
 
@@ -59,11 +67,7 @@ function detalleProducto($id) {
                 <p class="description">
                     <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque voluptates consequuntur in assumenda odit hic, aut cupiditate dolorem aspernatur! Quibusdam iusto magnam vero maxime quisquam voluptatibus minima aliquam molestias, iure ratione commodi, reiciendis quasi.</span>
                 </p>
-                <div class="bottom">
-                    <div class="btn__group">
-                        <button class="btn addToCart" data-id="' . $producto->id . '">Añadir carrito</button>
-                    </div>
-                </div>
+                <button onclick="goBack()" class="btn btn-outline-light btn-lg px-5">Volver</button>
             </div>
         </article>
     ';

@@ -18,8 +18,8 @@
       
                   <div class="mb-md-5 mt-md-4 pb-5">
       
-                    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                    <p class="text-white-50 mb-5">Por favor introduce tu nuevo usuario y contraseña</p>
+                    <h2 class="fw-bold mb-2 text-uppercase">Registro</h2>
+                    <p class="text-white-50 mb-5">Por favor introduce user y contraseña</p>
                     <p style="color: red;"><?php echo !empty($_GET['error']) ? $_GET['error']: ''; ?></p>
                     <form method="POST" action="../helpers/loginCheck.php">
                     <div class="form-outline form-white mb-4">
@@ -33,7 +33,7 @@
                     </div>
       
       
-                    <button class="btn btn-outline-light btn-lg px-5" type="submit" name="login">Iniciar Sesión</button>
+                    <button class="btn btn-outline-light btn-lg px-5" type="submit" name="register">Registrame</button>
 
 
                 </form>
@@ -41,7 +41,7 @@
                   </div>
       
                   <div>
-                    <p class="mb-0">No tienes cuenta? <a href="registro.php" class="text-white-50 fw-bold">Registrame</a>
+                    <p class="mb-0">Tienes cuenta? <a href="/app/views/inicioSesion.phps" class="text-white-50 fw-bold">Iniciar Sesion</a>
                     </p>
                   </div>
       
