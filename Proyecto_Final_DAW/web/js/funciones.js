@@ -15,6 +15,15 @@ function clearCart() {
     }
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+  // Obtener referencia al botón "Comprar"
+  var comprarBtn = document.querySelector(".comprar__carrito");
+
+  // Agregar Event Listener al botón
+  comprarBtn.addEventListener("click", comprar);
+});
+
+
 function comprar() {
   window.location.href = "app/views/compraProducto.php";
 }

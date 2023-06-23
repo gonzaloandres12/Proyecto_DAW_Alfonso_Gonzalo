@@ -94,7 +94,7 @@ if (isset($_GET['clear_cart'])) {
     </nav>
 
     <div class="carrito show">
-        <h1>Su Carrito</h1>
+        <h1>Tu Carrito</h1>
         <div class="carrito__center">
             <?= generarElementosCarrito(obtenerProductosDelCarrito()); ?>
         </div>

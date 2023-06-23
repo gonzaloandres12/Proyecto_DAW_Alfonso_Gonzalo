@@ -2,6 +2,7 @@
 include "Productos.php";
 include "Login.php";
 include "app/config/configDB.php";
+include "Pedidos.php";
 
 
 /*

@@ -1,6 +1,7 @@
 <?php
 include "../models/Productos.php";
 include "../helpers/generarCarrito.php";
+//include "../models/AccesoDatos.php";
 session_start();
 
 // Verificar si el carrito tiene productos
@@ -76,18 +77,19 @@ if (!isset($_SESSION['carrito']) || empty($_SESSION['carrito'])) {
             </div>
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Dirección de facturación</h4>
-                <form class="needs-validation was-validated" novalidate="" action="redirect.php">
+                <p style="color: red;"><?php echo !empty($_GET['error']) ? $_GET['error']: ''; ?></p>
+                <form class="needs-validation was-validated" method="POST" action="redirect.php">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="firstName">Primer nombre</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                            <input type="text" class="form-control" id="firstName" name="nombre"  placeholder="" value="" required="">
                             <div class="invalid-feedback">
                                 Valid first name is required.
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="lastName">Segundo nombre</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                            <input type="text" class="form-control" id="lastName" name="apellido" placeholder="" value="" required="">
                             <div class="invalid-feedback">
                                 Valid last name is required.
                             </div>
@@ -96,7 +98,7 @@ if (!isset($_SESSION['carrito']) || empty($_SESSION['carrito'])) {
 
                     <div class="mb-3">
                         <label for="email">Email <span class="text-muted">(Opcional)</span></label>
-                        <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com">
                         <div class="invalid-feedback">
                             Please enter a valid email address for shipping updates.
                         </div>
@@ -104,7 +106,7 @@ if (!isset($_SESSION['carrito']) || empty($_SESSION['carrito'])) {
 
                     <div class="mb-3">
                         <label for="address">Direccion</label>
-                        <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+                        <input type="text" class="form-control" id="address" name="direccion" placeholder="1234 Main St" required="">
                         <div class="invalid-feedback">
                             Please enter your shipping address.
                         </div>
@@ -112,7 +114,7 @@ if (!isset($_SESSION['carrito']) || empty($_SESSION['carrito'])) {
 
                     <div class="mb-3">
                         <label for="address2">Direccion 2 <span class="text-muted">(Optional)</span></label>
-                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                        <input type="text" class="form-control" id="address2" name="direccion2" placeholder="Apartment or suite">
                     </div>
 
                     <div class="row">
@@ -120,7 +122,7 @@ if (!isset($_SESSION['carrito']) || empty($_SESSION['carrito'])) {
                             <label for="country">Pais</label>
                             <select class="custom-select d-block w-100" id="country" required="">
                                 <option value="">Elige...</option>
-                                <option></option>
+                                <option>España</option>
                             </select>
                             <div class="invalid-feedback">
                                 Please select a valid country.
@@ -130,7 +132,7 @@ if (!isset($_SESSION['carrito']) || empty($_SESSION['carrito'])) {
                             <label for="state">Ciudad</label>
                             <select class="custom-select d-block w-100" id="state" required="">
                                 <option value="">Elige...</option>
-                                <option></option>
+                                <option>Madrid</option>
                             </select>
                             <div class="invalid-feedback">
                                 Please provide a valid state.
@@ -159,8 +161,10 @@ if (!isset($_SESSION['carrito']) || empty($_SESSION['carrito'])) {
                         </div>
                     </div>
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Pagar</button>
+                    <button class="btn btn-primary btn-lg btn-block" name="pagar" type="submit">Pagar</button>
                 </form>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" name="volver" type="button" onclick="goBack()">Volver</button>
             </div>
         </div>
 
@@ -174,7 +178,11 @@ if (!isset($_SESSION['carrito']) || empty($_SESSION['carrito'])) {
     </script>
     <script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="form-validation.js"></script>
-
+    <script >
+function goBack() {
+    window.location.href = "../../carrito.php";
+}
+    </script>
 </body>
 
 </html>

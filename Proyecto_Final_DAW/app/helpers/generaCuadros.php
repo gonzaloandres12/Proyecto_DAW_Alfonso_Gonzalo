@@ -40,27 +40,29 @@ function generarElementos($categoria)
     $result = "";
 
     foreach ($productos as $producto) {
-        $result .= '
-            <div class="producto">
-                <div class="image__container">
-                    <img src="' . $producto->image . '" alt="">
-                </div>
-                <div class="producto__footer card-title">
-                    <h1>' . $producto->title . '</h1>
-                    <div class="price">$' . $producto->price . '</div>
-                    <div class="stock">Quedan ' . $producto->stock . '</div>
-                </div>
-                <div class="bottom">
-                    <div class="btn__group">
-                        <form method="post" action="">
-                            <input type="hidden" name="add_to_cart" value="' . $producto->id . '">
-                            <button type="submit" class="btn btn-primary addToCart" data-id="' . $producto->id . '">Añadir carrito</button>
-                        </form>
-                        <a href="detalles.php?id=' . $producto->id . '" class="btn btn-primary view">Vista</a>
+        if ($producto->stock > 0) {
+            $result .= '
+                <div class="producto">
+                    <div class="image__container">
+                        <img src="' . $producto->image . '" alt="">
+                    </div>
+                    <div class="producto__footer card-title">
+                        <h1>' . $producto->title . '</h1>
+                        <div class="price">$' . $producto->price . '</div>
+                        <div class="stock">Quedan ' . $producto->stock . '</div>
+                    </div>
+                    <div class="bottom">
+                        <div class="btn__group">
+                            <form method="post" action="">
+                                <input type="hidden" name="add_to_cart" value="' . $producto->id . '">
+                                <button type="submit" class="btn btn-primary addToCart" data-id="' . $producto->id . '">Añadir carrito</button>
+                            </form>
+                            <a href="detalles.php?id=' . $producto->id . '" class="btn btn-primary view">Vista</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        ';
+            ';
+        }
     }
 
     // Imprimir el resultado para ser utilizado en la respuesta AJAX

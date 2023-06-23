@@ -3,7 +3,7 @@
 
 $host = 'localhost'; // Ejemplo: localhost
 $usuario = 'root';
-$contrasena = '7388';
+$contrasena = 'root';
 $nombre_bd = 'tienda';
 // Conexión a la base de datos
 $conexion = new mysqli($host, $usuario, $contrasena, $nombre_bd);

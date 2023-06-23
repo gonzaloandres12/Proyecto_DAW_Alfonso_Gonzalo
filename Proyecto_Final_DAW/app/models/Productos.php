@@ -1,4 +1,5 @@
 <?php
+
 class Productos {
     private $id;
     private $title;
